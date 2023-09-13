@@ -62,11 +62,11 @@
 
               <div class="divisao2"></div>
 
-              <div *ngIf="relatorioCollection.length > 0">
+              <div *ngFor="let resultado of relatorioCollection">
                 <div class="parent2">
-                  <div class="subDiv1" *ngIf="relatorioCollection[0]?.matricula">{{relatorioCollection[0]?.matricula}}</div>
-                  <div class="subDiv3" *ngIf="relatorioCollection[0]?.visualizado == '1'">Sim</div>
-                  <div class="subDiv3" *ngIf="relatorioCollection[0]?.visualizado == '0'">Não</div>
+                  <div class="subDiv1" *ngIf="resultado.matricula">{{resultado.matricula}}</div>
+                  <div class="subDiv3" *ngIf="resultado.visualizado == '1'">Sim</div>
+                  <div class="subDiv3" *ngIf="resultado.visualizado == '0'">Não</div>
                 </div>
               </div>
 

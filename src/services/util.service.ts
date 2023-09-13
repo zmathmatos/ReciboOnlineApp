@@ -21,9 +21,9 @@ export class UtilService {
   ) {}
 
   obterUrlDaApi() {
-    return 'https://reciboonline.api.qsti.com.br/api/';
+    //return 'https://reciboonline.api.qsti.com.br/api/';
     //return 'http://localhost:8081/api/';
-    //return "http://192.168.1.4:8181/api/";
+    return "http://localhost:5000/api/";
   }
 
   private eventSubject = new Subject<any>();
