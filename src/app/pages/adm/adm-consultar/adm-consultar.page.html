@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="black">
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="adm/home"></ion-back-button>
+    </ion-buttons>
+    <p class="titulo">Administradores</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher style="background-color: white;" slot="fixed" (ionRefresh)="atualizar($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Puxe para atualizar"
+      refreshingSpinner="circles" refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="pesquisa">
+    <ion-searchbar color="light" placeholder="Pesquisar Administrador" [value]="palavra" [(ngModel)]="palavra"
+      (ionInput)="filtrar($event)"></ion-searchbar>
+  </div>
+
+  <ion-list class="animate__animated animate__fadeInUp" *ngIf="loading==false">
+    <ion-item-sliding *ngFor="let usuario of usuarioCollection">
+      <ion-item style="cursor:pointer;">
+        <ion-label>
+          <h3 *ngIf="usuario.status==1 || usuario.status==0"><b>{{usuario.nome.toUpperCase()}}</b></h3>
+          <h3 style="color:gray" *ngIf="usuario.status==2"><b><del>{{usuario.nome.toUpperCase()}}</del></b></h3>
+          <p><b>Email: </b>{{usuario.email}}</p>
+          <p *ngIf="usuario.status==0" class="solicitado">Solicita ativação!</p>
+          <p *ngIf="usuario.status==1" class="ativado">Ativo</p>
+          <p *ngIf="usuario.status==2" class="bloqueado">Bloqueado</p>
+        </ion-label>
+        <ion-icon *ngIf="usuario.status==0" name="alert" slot="start" color="primary"></ion-icon>
+        <ion-icon *ngIf="usuario.status==1" name="person" slot="start" color="primary"></ion-icon>
+        <ion-icon *ngIf="usuario.status==2" name="lock-closed" slot="start" color="primary"></ion-icon>
+      </ion-item>
+      <ion-item-options side="start">
+        <ion-item-option color="success" (click)="mudarStatus(usuario.id,1)" *ngIf="usuario.status==0">Ativar
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="mudarStatus(usuario.id,2)" *ngIf="usuario.status==1">Bloquear
+        </ion-item-option>
+        <ion-item-option color="warning" (click)="mudarStatus(usuario.id,1)" *ngIf="usuario.status==2">Desbloquear
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="secondary">
+    <ion-fab-button (click)="administradorAdicionar()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ion-footer>
+  <ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar>
+</ion-footer>

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="black">
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="adm/func-consultar"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none">
+    <ion-item>
+      <ion-text>
+        <p class="titulo">Alterar Funcionário</p>
+      </ion-text>
+    </ion-item>
+  </ion-list>
+
+  <form [formGroup]="formGroup">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Matrícula:</ion-label>
+        <ion-input formControlName="matricula" autofocus="true" placeholder="Insira a matrícula" type="text">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Nome:</ion-label>
+        <ion-input formControlName="nome" autofocus="true" placeholder="Insira o nome" type="text">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">E-mail:</ion-label>
+        <ion-input formControlName="email" placeholder="Insira o e-mail" type="email">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block"  (click)="alterar()">
+      Alterar Cadastro
+    </ion-button>
+
+
+  </form>
+</ion-content>

@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="black">
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="adm/home"></ion-back-button>
+    </ion-buttons>
+    <p class="titulo">Funcionários</p>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-refresher style="background-color: white;" slot="fixed" (ionRefresh)="atualizar($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Puxe para atualizar"
+      refreshingSpinner="circles" refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="pesquisa">
+    <ion-searchbar color="light" placeholder="Pesquisar funcionário" [value]="palavra" [(ngModel)]="palavra"
+      (ionInput)="filtrar($event)"></ion-searchbar>
+  </div>
+  <ion-list class="animate__animated animate__fadeInUp" *ngIf="loading==false">
+    <div></div>
+    <ion-item-sliding *ngFor="let funcionario of funcionarioCollection">
+      <ion-item (click)="funcionarioAlterar(funcionario.id)">
+        <ion-label>
+          <h3 class="P" *ngIf="funcionario.status==1 || funcionario.status==0"><b> {{funcionario.nome.toUpperCase()}}</b></h3>
+          <h3  style="color:gray" *ngIf="funcionario.status==2"><b><del> {{funcionario.nome.toUpperCase()}}</del></b></h3>
+          <p class="p"><b>Matricula:</b> {{funcionario.matricula}}</p>
+          <p class="p"><b>Email:</b> {{funcionario.email}}</p>
+          <p class="p" *ngIf="funcionario.status==0" class="solicitado">Solicita ativação!</p>
+          <p class="p" *ngIf="funcionario.status==1" class="ativado">Ativado</p>
+          <p class="p" *ngIf="funcionario.status==2" class="bloqueado">Bloqueado</p>
+        </ion-label>
+        <ion-icon *ngIf="funcionario.status==0" name="alert" slot="start" color="primary"></ion-icon>
+        <ion-icon *ngIf="funcionario.status==1" name="people" slot="start" color="primary"></ion-icon>
+        <ion-icon *ngIf="funcionario.status==2" name="lock-closed" slot="start" color="primary"></ion-icon>
+      </ion-item>
+      <ion-item-options side="start">
+
+        <ion-item-option color="dark"  (click)="excluir(funcionario.id)" *ngIf="funcionario.status==2">Excluir</ion-item-option>
+        <ion-item-option color="success" (click)="mudarStatus(funcionario.id,1)" *ngIf="funcionario.status==0">Ativar
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="mudarStatus(funcionario.id,2)" *ngIf="funcionario.status==1">Bloquear
+        </ion-item-option>
+        <ion-item-option color="warning" (click)="mudarStatus(funcionario.id,1)" *ngIf="funcionario.status==2">Desbloquear
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <app-nao-ha-dados [carregando]="loading" [temDados]="funcionarioCollection.length>0"></app-nao-ha-dados>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="secondary">
+    <ion-fab-button (click)="funcionarioAdicionar()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ion-footer>
+  <ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar>
+</ion-footer>

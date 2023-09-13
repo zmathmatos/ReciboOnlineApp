@@ -1,0 +1,219 @@
+<ion-header>
+  <ion-toolbar color="black">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="funcionario/home"></ion-back-button>
+
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button  (click)="gerarPDF()">Gerar PDF</ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  >
+  <div #pdfContent>
+    <h6 style="text-align: center; color: black; font-weight: bold; margin-left: 12px; margin-top: 20px;">Demonstrativo de Pagamento</h6>
+    <h5 style="text-align: center; color: #ef7102; font-weight: bold; margin-left: 12px;">
+      {{ getNomeMes(reciboCollection[0]?.mes) }} de
+      {{reciboCollection[0]?.ano}}
+    </h5>
+
+    <ion-card *ngIf="reciboCollection.length > 0">
+      <ion-card-title class="ion-text-center" mode="md"
+        style="color: black; font-weight: bold; margin: 5px; font-size: 20px;">Funcionário e Empresa</ion-card-title>
+      <ion-card-content>
+        <div >
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <p class="titulo">Matrícula:  <b class="texto" *ngIf="reciboCollection[0]?.matricula" style="padding-left: 5px;"> {{reciboCollection[0]?.matricula}}</b> </p>
+
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="titulo">Nome:  <b class="texto" *ngIf="reciboCollection[0]?.nome" style="padding-left: 5px;">{{reciboCollection[0]?.nome}}</b></p>
+
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="titulo">Função:  <b class="texto" *ngIf="reciboCollection[0]?.funcao" style="padding-left: 5px;"> {{reciboCollection[0]?.funcao}}</b></p>
+
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="titulo">Conta Corrente:    <b class="texto" *ngIf="reciboCollection[0]?.contaCorrente" style="padding-left: 5px;"> {{reciboCollection[0]?.contaCorrente}}</b></p>
+
+              </ion-col>
+            </ion-row>
+
+            <div class="divisao"></div>
+
+            <ion-row>
+              <ion-col>
+                <p class="titulo">Empresa:   <b class="texto" *ngIf="reciboCollection[0]?.razaoSocial" style="padding-left: 5px;"> {{reciboCollection[0]?.razaoSocial}}</b></p>
+
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="titulo">Endereço:   <b class="texto" *ngIf="reciboCollection[0]?.logradouro" style="padding-left: 5px;"> {{reciboCollection[0]?.logradouro}}</b></p>
+
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="titulo">Número:   <b class="texto" *ngIf="reciboCollection[0]?.numero" style="padding-left: 5px;"> {{reciboCollection[0]?.numero}}</b></p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="titulo">Município:   <b class="texto" *ngIf="reciboCollection[0]?.cidade" style="padding-left: 5px;"> {{reciboCollection[0]?.cidade}}</b></p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="titulo">Estado:  <b class="texto" *ngIf="reciboCollection[0]?.uf" style="padding-left: 5px;"> {{reciboCollection[0]?.uf}}</b></p>
+
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="titulo">CNPJ:   <b class="texto" *ngIf="reciboCollection[0]?.cnpj" style="padding-left: 5px;"> {{reciboCollection[0]?.cnpj}}</b></p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card #pdfContent>
+      <ion-card-title class="ion-text-center" mode="md"
+        style="color: black; font-weight: bold; margin: 5px; font-size: 20px;">Proventos</ion-card-title>
+      <ion-card-content>
+        <ion-row>
+          <ion-col>
+            <div class="parent">
+              <div class="div1">Código</div>
+              <div class="div2">Descrição</div>
+              <div class="div3">Referência</div>
+              <div class="div4">Valor</div>
+            </div>
+
+            <div class="divisao2"></div>
+
+            <div *ngFor="let recibo of reciboCollection">
+              <div class="parent2" *ngIf="recibo.tipoCodigo === 'P'">
+                <div class="subDiv1">{{recibo.codigoPd}}</div>
+                <div class="subDiv2">{{recibo.descricaoCodigoPd}}</div>
+                <div class="subDiv3" *ngIf="recibo.referencia != 'NULL'">{{recibo.referencia}}</div>
+                <div class="subDiv4">{{recibo.valor}}</div>
+              </div>
+            </div>
+
+            <div class="divisao2"></div>
+
+            <b class="tituloTotal" style="display: inline;">Total: </b>
+            <p class="total" style="display: inline;">R$ {{reciboCollection[0]?.totalProventos}}</p>
+
+
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card #pdfContent>
+      <ion-card-title class="ion-text-center" mode="md"
+        style="color: black; font-weight: bold; margin: 5px; font-size: 20px;">Descontos</ion-card-title>
+      <ion-card-content>
+        <ion-row>
+          <ion-col>
+            <div class="parent">
+              <div class="div1">Código</div>
+              <div class="div2">Descrição</div>
+              <div class="div3">Referência</div>
+              <div class="div4">Valor</div>
+            </div>
+
+            <div class="divisao2"></div>
+
+            <div *ngFor="let recibo of reciboCollection">
+              <div class="parent2" *ngIf="recibo.tipoCodigo === 'D'">
+                <div class="subDiv1">{{recibo.codigoPd}}</div>
+                <div class="subDiv2">{{recibo.descricaoCodigoPd}}</div>
+                <div class="subDiv3" *ngIf="recibo.referencia != 'NULL'">{{recibo.referencia}}</div>
+                <div class="subDiv4">{{recibo.valor}}</div>
+              </div>
+            </div>
+
+            <div class="divisao2"></div>
+
+            <b class="tituloTotal" style="display: inline;">Total: </b>
+            <p class="total" style="display: inline;">R$ {{reciboCollection[0]?.totalDescontos}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-row>
+      <ion-col>
+        <ion-card class="ion-text-center" mode="md">
+          <ion-title style="color: black; font-weight: bold; margin-top: 5px;">Salário Base</ion-title>
+          <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.salarioBase">R$ {{reciboCollection[0]?.salarioBase}}</h3>
+          <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.salarioBase === 0">R$ 0</h3>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card class="ion-text-center" mode="md">
+          <ion-title style="color: black; font-weight: bold; margin-top: 5px;">Base INSS</ion-title>
+          <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.baseInss">R$ {{reciboCollection[0]?.baseInss}}</h3>
+          <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.baseInss === 0">R$ 0</h3>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card class="ion-text-center" mode="md">
+          <ion-title style="color: black; font-weight: bold; margin-top: 5px;">Base FGTS</ion-title>
+          <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.baseFgts">R$ {{reciboCollection[0]?.baseFgts}}</h3>
+          <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.baseFgts === 0">R$ 0</h3>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+          <ion-card class="ion-text-center" mode="md">
+            <ion-title style="color: black; font-weight: bold; margin-top: 5px;">Base IR</ion-title>
+            <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.baseIr">R$ {{reciboCollection[0]?.baseIr}}</h3>
+            <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.baseIr === 0">R$ 0</h3>
+          </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card class="ion-text-center" mode="md">
+          <ion-title style="color: black; font-weight: bold; margin-top: 5px;">Base IR Ferias</ion-title>
+          <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.baseIrFerias">R$ {{reciboCollection[0]?.baseIrFerias}}</h3>
+          <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.baseIrFerias === 0">R$ 0</h3>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card class="ion-text-center" mode="md">
+          <ion-title style="color: black; font-weight: bold; margin-top: 5px;">FGTS do Mês</ion-title>
+          <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.fgtsMes">R$ {{reciboCollection[0]?.fgtsMes}}</h3>
+          <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.fgtsMes === 0">R$ 0</h3>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card class="ion-text-center" mode="md" color="primary">
+          <ion-title style="color: black; font-weight: bold; margin-top: 5px;">Salário Líquido a Receber</ion-title>
+          <h3 style="font-size: 17px; font-weight: bold;" *ngIf="reciboCollection[0]?.totalLiquido" class="liquido">R$ {{reciboCollection[0]?.totalLiquido}}</h3>
+          <h3 style="font-size: 16px; font-weight: bold;" *ngIf="reciboCollection[0]?.totalLiquido === 0">R$ 0</h3>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

@@ -1,0 +1,73 @@
+<ion-content>
+  <div class="fundo">
+  <header>
+    <div style="background-color: #000000;">
+      <img src="../assets/logo2.png" class="img-header" />
+    </div>
+
+  </header>
+
+  <div style="margin-left: 30px; margin-right: 30px; padding-top: 90px">
+    <ion-card class="container-login" class="card-shadow">
+      <div>
+        <form [formGroup]="formGroup">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-card-title class="titulo"> Trocar Senha </ion-card-title>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-card-subtitle class="subtitulo1">
+                Administrativo
+              </ion-card-subtitle>
+              <ion-list>
+                <ion-item>
+                  <ion-icon name="mail-outline" class="icon-login" color="primary"></ion-icon>
+                  <ion-input type="email" formControlName="email" required placeholder="E-mail"clear-input ></ion-input>
+                </ion-item>
+                <br *ngIf="emailEnviado==true"/>
+                <ion-item *ngIf="emailEnviado==true">
+                  <ion-icon name="key-outline" class="icon-login" color="primary"></ion-icon>
+                  <ion-input type="email" formControlName="token" required placeholder="Token"clear-input ></ion-input>
+                </ion-item>
+                <br *ngIf="emailEnviado==true"/>
+                <ion-item *ngIf="emailEnviado==true">
+                  <ion-icon name="lock-closed-outline" class="icon-login" color="primary"></ion-icon>
+                  <ion-input type="password" formControlName="senha" required placeholder="Nova senha"clear-input ></ion-input>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-button color="secondary" fill="solid" expand="block" (click)="enviarEmail()"
+              [disabled]="!formGroup.valid" *ngIf="emailEnviado==false">
+                Enviar
+              </ion-button>
+
+              <ion-button color="secondary" fill="solid" expand="full" (click)="alterarSenha()"
+              [disabled]="!formGroup.valid" *ngIf="emailEnviado==true">
+              Alterar Senha
+            </ion-button>
+            </ion-col>
+          </ion-row>
+
+            <ion-progress-bar type="indeterminate" *ngIf="loading"  color="warning" ></ion-progress-bar>
+
+          <ion-row >
+            <ion-col>
+              <ion-card-subtitle class="subtitulo2" (click)="showLoginFuncionario()">
+                Voltar
+              </ion-card-subtitle>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+      </div>
+    </ion-card>
+  </div>
+</div>
+</ion-content>

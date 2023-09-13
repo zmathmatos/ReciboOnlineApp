@@ -1,0 +1,28 @@
+<ion-item>
+  <ion-label position="stacked">{{label}}</ion-label>
+  <!-- <ion-input #criterio 
+    [placeholder]="placeholder" 
+    type="text" 
+    (keyup)="filtrar(criterio.value)" 
+    (ionBlur)="onBlur()"
+    (ionFocus)="onFocus()" 
+    [(ngModel)]="nomeSelecionado" clearInput>
+  </ion-input> -->
+  <ion-input #criterio 
+    [placeholder]="placeholder" 
+    type="text" 
+    (keyup)="filtrar($event)" 
+    (ionBlur)="onBlur()"
+    (ionFocus)="onFocus()" 
+    [(ngModel)]="nomeSelecionado" clearInput>
+  </ion-input>
+</ion-item>
+
+<ion-list class="animated bounceInUp" no-lines *ngIf="collection?.length > 0 && digitando==true" style="position: relative; margin-top: 0px; float: left; width:100%; z-index: 1000;">
+  <ion-item *ngFor="let item of collection" (click)="selecionar(item)">
+    <ion-label class="ion-text-wrap"><b>{{item.nome}}</b>
+    <p>{{item.email}}</p>
+    <p>{{item.nomeEmpresa}}</p>
+  </ion-label>
+  </ion-item>
+</ion-list>

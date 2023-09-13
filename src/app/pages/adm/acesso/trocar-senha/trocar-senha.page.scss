@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+.grid1 {
+  height: 100%;
+  padding: 0px;
+}
+
+
+
+.img-header {
+  display: block;
+  padding: 10px;
+  width: 129px;
+  margin: auto;
+  display: flex;
+}
+
+.titulo {
+  text-align: center;
+  padding-top: 20px;
+  font-weight: bold;
+  font-size: 32px;
+  color: primary;
+  font-family: "Poppins", sans-serif;
+}
+
+.subtitulo1 {
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 12px;
+}
+
+.subtitulo2 {
+  font-size: 15px;
+  color: #464545;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 12px;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.subtitulo2:hover {
+  font-size: 15px;
+  color: #ff5100;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 12px;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.card-shadow {
+  -webkit-box-shadow: 1px 2px 8px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 2px 8px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 1px 2px 8px 0px rgba(0, 0, 0, 0.75);
+}
+
+.container-login {
+  width: 90%;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+}
+
+.fundo {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  background-image: linear-gradient(
+    to top,
+    rgb(255, 68, 0),
+    rgb(252, 112, 19),
+    rgb(255, 166, 0)
+  );
+  position: absolute;
+  background-size: 404%;
+}
+
+.row2 {
+  height: 50%;
+}
+
+ion-icon {
+  margin-right: 15px;
+  color: #272727;
+}
+
+ion-button {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+ion-slide {
+  width: 100%;
+  height: 100%;
+  position: absolute !important;
+  top: 0px !important;
+}

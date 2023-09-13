@@ -1,0 +1,7 @@
+{
+  "name": "Qsti.ReciboOnline",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

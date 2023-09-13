@@ -1,0 +1,67 @@
+<ion-content>
+  <div class="fundo">
+    <header>
+      <div style="background-color: #000000;">
+        <img src="../assets/logo2.png" class="img-header" />
+      </div>
+    </header>
+
+
+    <div style="display: flex; justify-content: center; margin-left: 30px; margin-right: 30px; padding-top: 90px">
+      <ion-card class="container-login">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-card-title class="titulo"> Recibo Online </ion-card-title>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-list>
+                  <ion-item>
+                    <ion-icon name="person-outline" class="icon-login" color="primary"></ion-icon>
+                    <ion-input name="user" type="number" required placeholder="Matrícula" [clearInput]="false" class="input"
+                      [(ngModel)]="login.matricula" clear-input></ion-input>
+                  </ion-item>
+                  <br />
+                  <ion-item>
+                    <ion-icon name="lock-closed-outline" class="icon-login" color="primary"></ion-icon>
+                    <ion-input name="password" [type]="isIconClicked ? 'text' : 'password'" required placeholder="Senha" [(ngModel)]="login.senha" [clearInput]="false" >
+                    </ion-input>
+                    <ion-icon [name]="isIconClicked ? 'eye-off-outline' : 'eye-outline'"
+                    position="end"
+                    (click)="handleIconClick()" style="cursor: pointer;"></ion-icon>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <ion-button color="secondary" fill="solid" expand="block" (click)="autenticar()">
+                  Entrar
+                </ion-button>
+                <div >
+                  <ion-button color="tertiary" expand="block" (click)="openTrocarSenha()">
+                    Esqueci minha senha
+                  </ion-button>
+
+                </div>
+
+
+              </ion-col>
+            </ion-row>
+            <ion-progress-bar type="indeterminate" *ngIf="loading" color="warning"></ion-progress-bar>
+           <div>
+                <ion-label class="criarconta" (click)="criarConta()">
+                  Criar conta
+                </ion-label>
+                <ion-label class="subtitulo2" (click)="showLoginAdministrador()">
+                  Entrar como Administrador
+                </ion-label>
+            </div>
+          </ion-grid>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

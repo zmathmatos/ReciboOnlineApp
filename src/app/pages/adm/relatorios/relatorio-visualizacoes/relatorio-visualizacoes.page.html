@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar color="black">
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="adm/relatorios"></ion-back-button>
+    </ion-buttons>
+    <p class="titulo">Relatório de Visualizações</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label><b>Selecione a data do recibo: </b></ion-label>
+            <ion-item>
+              <ion-input [(ngModel)]="mes" placeholder="Mês" type="text" class="data"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input  [(ngModel)]="ano" placeholder="Ano" type="text" class="data"></ion-input>
+            </ion-item>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+  <div>
+    <ion-button expand="block" id="open-modal" (click)="loadRelatorio()"> Gerar relatório </ion-button>
+  </div>
+
+
+  <ion-modal #modal trigger="open-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="dark">
+          <ion-buttons slot="start">
+          <ion-button color="primary" style="font-weight: bold;" (click)="gerarPDF()"> Gerar PDF </ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button (click)="modal.dismiss()" color="primary" style="font-weight: bold;">Fechar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+        <ion-searchbar placeholder="Procurar matrícula" [value]="matricula" [(ngModel)]="matricula"
+      (ionInput)="filtrar($event)"></ion-searchbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <div #pdfContent>
+        <ion-grid>
+          <div style="display: flex; justify-content: center; font-weight: bold; font-size:20px;">
+            <p >Relatório de Visualizações</p>
+          </div>
+          <ion-row style="text-align: center;">
+            <ion-col>
+              <div class="parent">
+                <div class="div1">Matrícula</div>
+                <div class="div3">Visualizado</div>
+
+              </div>
+
+              <div class="divisao2"></div>
+
+              <div *ngIf="relatorioCollection.length > 0">
+                <div class="parent2">
+                  <div class="subDiv1" *ngIf="relatorioCollection[0]?.matricula">{{relatorioCollection[0]?.matricula}}</div>
+                  <div class="subDiv3" *ngIf="relatorioCollection[0]?.visualizado == '1'">Sim</div>
+                  <div class="subDiv3" *ngIf="relatorioCollection[0]?.visualizado == '0'">Não</div>
+                </div>
+              </div>
+
+              <div class="divisao2"></div>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      </ion-content>
+
+    </ng-template>
+  </ion-modal>
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="black">
+    <ion-buttons slot="start" style="position: absolute;">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-menu-toggle name="menu-outline" slot="start" style="width: 5%;"></ion-menu-toggle>
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <img src="../assets/logo2.png" class="img-header" style="display: block;" />
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <ion-item>
+    <p class="titulo">Histórico de Recibos</p>
+  </ion-item>
+
+  <div class="pesquisa">
+    <ion-searchbar color="light" placeholder="Pesquisar por Mês" [value]="palavra"
+      [(ngModel)]="palavra"></ion-searchbar>
+  </div>
+
+  <ion-refresher style="background-color: white;" slot="fixed" (ionRefresh)="atualizar($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Puxe para atualizar"
+      refreshingSpinner="circles" refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list class="animate__animated animate__fadeInUp" *ngIf="loading==false">
+    <ion-item-sliding *ngFor="let recibo of reciboCollection">
+      <ion-item style="cursor: pointer;"  (click)="showPageDetalhar(recibo.matricula, recibo.mes, recibo.ano,  recibo.visualizacao)"
+        (click)="salvarNoLocalStorage(recibo.mes, recibo.ano)" >
+        <ion-label>
+          <h3>
+            <p class="p"><b>Recibo de Pagamento</b> </p>
+            <p class="p"><b>Mes:</b> {{ getNomeMes(recibo.mes) }}</p>
+            <p class="p"><b>Ano:</b> {{recibo.ano}}</p>
+          </h3>
+        </ion-label>
+        <ion-label slot="end">
+
+        </ion-label>
+        <ion-icon name="document-text-outline" slot="start" color="success"></ion-icon>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+
+  <app-nao-ha-dados [carregando]="loading" [temDados]="reciboCollection.length>0"></app-nao-ha-dados>
+
+</ion-content>

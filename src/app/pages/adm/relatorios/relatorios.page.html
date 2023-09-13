@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="black">
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="adm/home"></ion-back-button>
+    </ion-buttons>
+    <p class="titulo1">Relatórios</p>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card mode="md" size="large" expand="block" class="card" (click)="relatoriosConsultarClick()">
+          <ion-item>
+            <ion-card-title class="ion-text-left" class="titulo2">Relatório de Visualizações</ion-card-title>
+            <ion-icon name="reader-outline" slot="start" color="primary"></ion-icon>
+            <ion-icon name="chevron-forward" slot="end" color="dark"></ion-icon>
+          </ion-item>
+          <ion-card-content>
+            <ion-card-subtitle>
+              Relatório dos funcionários que visualizaram o recibo.
+            </ion-card-subtitle>
+          </ion-card-content>
+
+          <ion-row class="row"></ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+.titulo {
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  font-weight: bolder;
+  font-family: "Roboto", sans-serif;
+}
+
+.texto{
+  color: rgb(88, 88, 88);
+  font-size: 13px;
+  font-family: "Roboto", sans-serif;
+}
+
+.tituloTotal{
+  font-size: 17px;
+  color: black;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+.total{
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  color: #ef7102;
+}
+
+.liquido {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  color: #ffffff;
+}
+
+.h6 {
+  text-align: center;
+  color: primary;
+  font-weight: bold;
+  margin-left: 12px;
+}
+
+.h5{
+  text-align: center;
+  color: #ef7102;
+  font-weight: bold;
+  margin-left: 12px;
+}
+
+.divisao {
+  background-color: rgb(139, 138, 138);
+  height: 1px;
+  margin: 5px;
+}
+
+.divisao2 {
+  background-color: rgb(139, 138, 138);
+  height: 1px;
+  margin: 5px;
+}
+
+.line-vertical {
+  border-left: 1px solid rgb(139, 138, 138);;
+  height: 100px;
+}
+
+.parent {
+  font-size: 15px;
+  color: rgb(39, 38, 38);
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Definir 4 colunas para corresponder ao .parent2 */
+  grid-template-rows: repeat(2, 0fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.parent2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+  .div1 { font-size: 14px; font-weight: bold; font-family: "Roboto", sans-serif; grid-area: 1 / 1 / 2 / 2; }
+  .div2 { font-size: 14px; font-weight: bold; font-family: "Roboto", sans-serif; grid-area: 1 / 2 / 2 / 3; }
+  .div3 { font-size: 14px; font-weight: bold; font-family: "Roboto", sans-serif; grid-area: 1 / 3 / 2 / 4; }
+  .div4 { font-size: 14px; font-weight: bold; font-family: "Roboto", sans-serif; grid-area: 1 / 4 / 2 / 5; }
+  .div5 { font-size: 14px; font-weight: bold; font-family: "Roboto", sans-serif; grid-area: 1 / 5 / 2 / 6; }
+  .div6 { font-size: 14px; font-weight: bold; font-family: "Roboto", sans-serif; grid-area: 1 / 6 / 2 / 7; }
+
+  .subDiv1 { font-size: 12px; font-weight: bold; font-family: "Roboto", sans-serif; grid-area: 1 / 1 / 2 / 2; }
+  .subDiv2 { font-size: 12px; font-weight: bold; font-family: "Roboto", sans-serif; grid-area: 1 / 2 / 2 / 3; }
+  .subDiv3 { font-size: 12px; font-weight: bold; font-family: "Roboto", sans-serif; grid-area: 1 / 3 / 2 / 4; }
+  .subDiv4 { font-size: 12px; font-weight: bold; font-family: "Roboto", sans-serif; grid-area: 1 / 4 / 2 / 5; }
+  .subDiv5 { font-size: 12px; font-weight: bold; font-family: "Roboto", sans-serif; grid-area: 1 / 5 / 2 / 6; }
+  .subDiv6 { font-size: 12px; font-weight: bold; font-family: "Roboto", sans-serif; grid-area: 1 / 6 / 2 / 7; }
+

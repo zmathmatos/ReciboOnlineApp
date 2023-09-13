@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+.titulo {
+  font-size: 25px;
+  color: primary;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  font-family: "Poppins", sans-serif;
+}
+.ativado {
+  color: #07cc00;
+}
+.bloqueado {
+  color: #cc0000;
+}
+.solicitado {
+  color: #ffbc03;
+}
+
+.p {
+  color: black;
+  font-size: 13px;
+  font-family: "Poppins", sans-serif;
+}
+
+.pesquisa {
+  background-color: #ef7102;
+}
