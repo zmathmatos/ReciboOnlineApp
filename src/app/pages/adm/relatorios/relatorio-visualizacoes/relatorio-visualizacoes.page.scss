@@ -56,7 +56,7 @@
   color: rgb(39, 38, 38);
   display: grid;
   text-align: center;
-  grid-template-columns: 2fr 3fr repeat(1, 2fr);
+  grid-template-columns: 1fr 1fr repeat(3, 0fr);
   grid-template-rows: repeat(1, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;

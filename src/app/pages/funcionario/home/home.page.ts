@@ -71,13 +71,14 @@ export class HomePage implements OnInit {
     localStorage.setItem('mes', mes);
     localStorage.setItem('ano', ano);
 
+
   }
 
   enviarVisualizacao(matricula, mes, ano, visualizado){
     visualizado = 1;
     localStorage.setItem('visualizado', visualizado);
     let form = {
-      "matricula": matricula,
+      "matricula": matricula = localStorage.getItem('matricula_funcionario'),
       "mes": mes,
       "ano": ano,
       "visualizado": visualizado

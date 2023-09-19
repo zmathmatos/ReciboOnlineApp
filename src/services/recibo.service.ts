@@ -27,18 +27,18 @@ export class ReciboService {
     return this.http.get(url, header).toPromise();
   }
 
-   enviarVisualizacao(form: any ){
-    let url = this.utilService.obterUrlDaApi() + 'Recibo/EnviarVisualizacao'
+
+  enviarVisualizacao(form: any ){
+    let url = this.utilService.obterUrlDaApi() + 'Visualizacao/EnviarVisualizacao'
     let token = atob(sessionStorage.getItem('token_funcionario'));
 
     var header = new HttpHeaders()
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', `application/json`);
 
-  return this.http.put(url, form, { headers: header }).toPromise();
+    return this.http.post(url, form, { headers: header }).toPromise();
+
   }
-
-
 
 
   listar() {
@@ -59,7 +59,7 @@ export class ReciboService {
   listarVisualizacao(mes, ano ) {
     let url =
       this.utilService.obterUrlDaApi() +
-      'Relatorio/RelatorioVisualizacoes/' +
+      'Visualizacao/RelatorioVisualizacoes/' +
       mes + "/" + ano ;
 
     let token = atob(sessionStorage.getItem('token'));

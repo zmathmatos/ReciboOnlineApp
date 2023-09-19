@@ -12,6 +12,7 @@ export class SolicitacoesPage implements OnInit {
   statusSelecionado: string = '2';
   solicitacaoConcluidaCollection: any[] = [];
   solicitacaoSolicitadaCollection: any[] = [];
+  solicitacaoErroCollection: any[] = [];
   loading: boolean = false;
 
 
@@ -41,6 +42,7 @@ export class SolicitacoesPage implements OnInit {
   ionViewDidEnter() {
     this.listarSolicitacaoConcluida();
     this.listarSolicitacaoSolicitada();
+    this.listarSolicitacaoErro();
   }
 
 
@@ -83,6 +85,28 @@ export class SolicitacoesPage implements OnInit {
 
         this.loading = false;
       }).finally(() => {
+        //this.utilService.hideLoading();
+      });
+  }
+
+  listarSolicitacaoErro(callback = null) {
+    this.loading = true;
+    this.solicitacaoService.listar(3)
+      .then((response: any) => {
+        this.loading = false;
+        this.solicitacaoErroCollection = response;
+        if (callback != null) {
+          callback();
+        }
+      })
+      .catch((response) => {
+        if ((response.status = 401)) {
+          this.navCtrl.navigateRoot('adm/home');
+        }
+
+        this.loading = false;
+      })
+      .finally(() => {
         //this.utilService.hideLoading();
       });
   }

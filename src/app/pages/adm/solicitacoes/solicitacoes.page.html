@@ -15,10 +15,13 @@
 
   <ion-segment style="background-color: #ef7102; border-radius: 0px;" scrollable (ionChange)="selecionar($event)" mode="ios" [value]="statusSelecionado">
     <ion-segment-button value="2">
-      <ion-label>Disponível</ion-label>
+      <ion-label class="p2">Disponível</ion-label>
     </ion-segment-button>
     <ion-segment-button value="0">
-      <ion-label>Solicitado</ion-label>
+      <ion-label class="p2">Solicitado</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="3">
+      <ion-label class="p2">Erro</ion-label>
     </ion-segment-button>
   </ion-segment>
 
@@ -56,7 +59,28 @@
           </h3>
 
         </ion-label>
-        <ion-icon name="reader-outline" slot="start" color="success"></ion-icon>
+        <ion-icon name="reader-outline" slot="start" color="warning"></ion-icon>
+      </ion-item>
+      <ion-item-options side="start">
+        <ion-item-option color="danger" (click)="excluir(item.id)">Excluir</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list class="animate__animated animate__fadeInUp" *ngIf="loading==false && statusSelecionado === '3'">
+    <ion-item-sliding *ngFor="let item of solicitacaoErroCollection">
+      <ion-item>
+        <ion-label>
+          <h3 class="p">
+            <p><b>ID da Solicitação: </b>{{item.id}} </p>
+            <p *ngIf="item.todasMatriculas == true"><b>Matrícula:</b> Todas </p>
+            <p *ngIf="item.todasMatriculas == false"><b>Matrícula:</b> {{item.matricula}} </p>
+            <p><b>Mês: </b>{{ getNomeMes(item.mes) }}</p>
+            <p><b>Ano: </b>{{item.ano}}</p>
+          </h3>
+
+        </ion-label>
+        <ion-icon name="reader-outline" slot="start" color="danger"></ion-icon>
       </ion-item>
       <ion-item-options side="start">
         <ion-item-option color="danger" (click)="excluir(item.id)">Excluir</ion-item-option>

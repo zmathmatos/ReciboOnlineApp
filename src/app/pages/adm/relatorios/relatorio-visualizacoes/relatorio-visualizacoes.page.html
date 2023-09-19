@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
 <ion-header>
   <ion-toolbar color="black">
     <ion-buttons slot="start">
@@ -25,11 +26,9 @@
       </ion-row>
     </ion-grid>
 
-
   <div>
     <ion-button expand="block" id="open-modal" (click)="loadRelatorio()"> Gerar relatório </ion-button>
   </div>
-
 
   <ion-modal #modal trigger="open-modal">
     <ng-template>
@@ -47,33 +46,33 @@
       </ion-header>
 
       <ion-content class="ion-padding">
-        <div #pdfContent>
+        <div>
         <ion-grid>
           <div style="display: flex; justify-content: center; font-weight: bold; font-size:20px;">
             <p >Relatório de Visualizações</p>
           </div>
-          <ion-row style="text-align: center;">
+
+          <div style="text-align: center; justify-content: center;">
             <ion-col>
               <div class="parent">
-                <div class="div1">Matrícula</div>
-                <div class="div3">Visualizado</div>
-
+                <div  class="ion-text-center" style="font-weight: bold;">Matrícula</div>
+                <div  class="ion-text-center" style="font-weight: bold;">Visualizado</div>
               </div>
 
               <div class="divisao2"></div>
 
-              <div *ngFor="let resultado of relatorioCollection">
-                <div class="parent2">
-                  <div class="subDiv1" *ngIf="resultado.matricula">{{resultado.matricula}}</div>
-                  <div class="subDiv3" *ngIf="resultado.visualizado == '1'">Sim</div>
-                  <div class="subDiv3" *ngIf="resultado.visualizado == '0'">Não</div>
-                </div>
-              </div>
+              <ion-list *ngFor="let resultado of relatorioCollection">
+                <ion-item class="ion-text-center">
+                  <ion-label class="subDiv2">{{resultado.matricula}}</ion-label>
+                  <ion-label class="subDiv3" *ngIf="resultado.visualizado == '1'">Sim</ion-label>
+                  <ion-label class="subDiv3" *ngIf="resultado.visualizado == '0'">Não</ion-label>
+                </ion-item>
+              </ion-list>
 
-              <div class="divisao2"></div>
+              <!--<div class="divisao2"></div>-->
 
             </ion-col>
-          </ion-row>
+          </div>
         </ion-grid>
       </div>
       </ion-content>
