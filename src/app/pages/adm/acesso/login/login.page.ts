@@ -23,12 +23,6 @@ export class LoginPage implements OnInit {
     this.menuCtrl.swipeGesture(false);
     this.utilService.publishSomeData({ key: 'usuarioLogado', value: false });
 
-    setTimeout(() => {
-      let pushEnabled = localStorage.getItem("push-enabled");
-      if (pushEnabled == 'false') {
-        this.utilService.showToast('Notificação desabilitada! Você não receberá notificações do sistema.', 3000, 'top');
-      }
-    }, 2000);
   }
 
     public handleIconClick(): void {

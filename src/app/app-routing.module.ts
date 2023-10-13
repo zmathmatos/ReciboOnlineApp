@@ -40,6 +40,11 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'funcionario/assinatura',
+    canActivate: [AuthorizeGuardFuncionario],
+    loadChildren: () => import('./pages/funcionario/assinatura/assinatura.module').then( m => m.AssinaturaPageModule)
+  },
+  {
     path: 'adm/home',
     canActivate: [AuthorizeGuard],
     loadChildren: () =>
@@ -128,6 +133,7 @@ const routes: Routes = [
     path: 'funcionario/criar-conta',
     loadChildren: () => import('./pages/funcionario/acesso/criar-conta/criar-conta.module').then( m => m.CriarContaPageModule)
   },
+
 
 
 

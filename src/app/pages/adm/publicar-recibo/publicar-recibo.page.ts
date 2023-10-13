@@ -12,6 +12,8 @@ import { FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 })
 export class PublicarReciboPage implements OnInit {
   isChecked: boolean = false;
+  ano: any;
+  mes: any;
   public formGroup: FormGroup;
   mesAno: string;
   loading: boolean = false;
@@ -34,6 +36,17 @@ export class PublicarReciboPage implements OnInit {
 
   ngOnInit() {}
 
+  formatarNumero(valor: string, campo: string) {
+    const numero = parseInt(valor, 10);
+    if (!isNaN(numero)) {
+      // Remova qualquer zero à esquerda e atribua o valor
+      this[campo] = numero.toString();
+    } else {
+      // Se o valor inserido não for um número válido, defina como vazio
+      this[campo] = '';
+    }
+  }
+
   adicionar() {
     this.utilService.showLoading();
     this.loading = true;
@@ -42,7 +55,6 @@ export class PublicarReciboPage implements OnInit {
           console.log("Resposta da API:", response);
           this.utilService.hideLoading();
           this.loading = false;
-
           if (response.success === true) {
             this.utilService.showAlert("Solicitação enviada com sucesso!", () => {
               this.navCtrl.navigateRoot('adm/solicitacoes');

@@ -86,6 +86,17 @@ export class RelatorioVisualizacoesPage implements OnInit {
     });
   }
 
+  formatarNumero(valor: string, campo: string) {
+    const numero = parseInt(valor, 10);
+    if (!isNaN(numero)) {
+      // Remova qualquer zero à esquerda e atribua o valor
+      this[campo] = numero.toString();
+    } else {
+      // Se o valor inserido não for um número válido, defina como vazio
+      this[campo] = '';
+    }
+  }
+
   gerarPDF() {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
 

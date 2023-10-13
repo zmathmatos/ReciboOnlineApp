@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, ReactiveFormsModule } 
 import { NavController } from '@ionic/angular';
 import { UtilService } from '../../../../services/util.service';
 import { UsuarioService } from './../../../../services/usuario.service';
+import { SolicitacaoService } from 'src/services/solicitacao.service';
 
 @Component({
   selector: 'app-adm-adicionar',

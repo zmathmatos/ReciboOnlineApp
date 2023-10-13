@@ -53,7 +53,8 @@ export class AppComponent implements OnInit {
   initializeApp() {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
-      this.statusBar.styleDefault();
+      this.statusBar.backgroundColorByHexString('#000000'); // Substitua com a cor desejada
+
     });
     if(localStorage.getItem('darkMode') === null){
       localStorage.setItem('darkMode', "false");

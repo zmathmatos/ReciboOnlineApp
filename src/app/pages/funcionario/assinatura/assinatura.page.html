@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="black">
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="funcionario/recibo-detalhar"></ion-back-button>
+    </ion-buttons>
+    <p class="titulo">Assinatura</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="canvas-container">
+    <canvas #canvas></canvas>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col >
+        <ion-button color="danger" (click)="clearPad()">Limpar</ion-button>
+        <ion-button color="primary" (click)="savePad()">Salvar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <img [src]= 'signatureImg'/>
+
+</ion-content>

@@ -17,7 +17,7 @@
           <ion-col>
             <ion-item>
               <ion-label position="floating">Mês</ion-label>
-              <ion-input autofocus="true" formControlName="mes" placeholder="Insira o Mês" type="number">
+              <ion-input [(ngModel)]="mes" autofocus="true" formControlName="mes" placeholder="Insira o Mês" type="number" (ngModelChange)="formatarNumero($event, 'mes')">
               </ion-input>
             </ion-item>
           </ion-col>
@@ -26,7 +26,7 @@
           <ion-col>
             <ion-item>
               <ion-label position="floating">Ano</ion-label>
-              <ion-input autofocus="true" formControlName="ano" placeholder="Insira o Ano" type="number">
+              <ion-input [(ngModel)]="ano" autofocus="true" formControlName="ano" placeholder="Insira o Ano" type="number" (ngModelChange)="formatarNumero($event, 'ano')">
               </ion-input>
             </ion-item>
           </ion-col>

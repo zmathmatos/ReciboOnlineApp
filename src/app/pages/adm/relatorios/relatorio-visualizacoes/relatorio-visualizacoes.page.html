@@ -16,10 +16,10 @@
           <ion-item lines="none">
             <ion-label><b>Selecione a data do recibo: </b></ion-label>
             <ion-item>
-              <ion-input [(ngModel)]="mes" placeholder="Mês" type="text" class="data"></ion-input>
+              <ion-input [(ngModel)]="mes" placeholder="Mês" type="text" class="data" (ngModelChange)="formatarNumero($event, 'mes')"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input  [(ngModel)]="ano" placeholder="Ano" type="text" class="data"></ion-input>
+              <ion-input  [(ngModel)]="ano" placeholder="Ano" type="text" class="data"(ngModelChange)="formatarNumero($event, 'ano')"> </ion-input>
             </ion-item>
           </ion-item>
         </ion-col>

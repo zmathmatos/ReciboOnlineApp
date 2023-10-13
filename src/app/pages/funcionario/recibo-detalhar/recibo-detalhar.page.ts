@@ -3,14 +3,14 @@
 /* eslint-disable prefer-const */
 /* eslint-disable arrow-body-style */
 /* eslint-disable @typescript-eslint/member-ordering */
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuController, NavController } from '@ionic/angular';
 import { ReciboService } from 'src/services/recibo.service';
 import { UtilService } from 'src/services/util.service';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-
+import SignaturePad from 'signature_pad';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -18,6 +18,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   templateUrl: './recibo-detalhar.page.html',
   styleUrls: ['./recibo-detalhar.page.scss'],
 })
+
 export class ReciboDetalharPage implements OnInit {
   visualizado: any;
   mes: any;
@@ -32,7 +33,8 @@ export class ReciboDetalharPage implements OnInit {
     private route: ActivatedRoute,
     public menu: MenuController,
     public reciboService: ReciboService,
-    public utilService: UtilService
+    public utilService: UtilService,
+    public navCtrl: NavController,
   ) {}
 
   ngOnInit() {}
@@ -133,7 +135,6 @@ export class ReciboDetalharPage implements OnInit {
       proventosValorItemsWithSpaces.push(proventosValorItem, '\n'); // Adicione espaço entre os itens
      }
 
-
       // Crie um array de objetos para 'codigoItems' com espaços entre eles
     const descontosCodigoItemsWithSpaces = [];
     for (const descontosCodigoItem of descontosCodigoItems) {
@@ -216,12 +217,12 @@ export class ReciboDetalharPage implements OnInit {
         {
           alignment: 'center',
           text: '\n\n' + 'Proventos' + '\n\n',
-          fontSize: 13,
+          fontSize: 9,
           bold: 'true',
         },
         {
           alignment: 'center',
-          fontSize: 9,
+          fontSize: 8,
           columns: [
             [
               {
@@ -230,6 +231,7 @@ export class ReciboDetalharPage implements OnInit {
               },
               '\n',
               proventosCodigoItemsWithSpaces,
+              '\n',
             ],
             [
               {
@@ -258,14 +260,23 @@ export class ReciboDetalharPage implements OnInit {
           ],
         },
         {
+          alignment: 'right',
+          fontSize: 8,
+          bold: 'true',
+          width: '*',
+          text: 'Total: ' + this.reciboCollection[0].totalProventos,
+          margin: [0, 0, 50, 0]
+
+        },
+        {
           alignment: 'center',
           text: '\n\n' + 'Descontos' + '\n\n',
-          fontSize: 13,
+          fontSize: 9,
           bold: 'true',
         },
         {
           alignment: 'center',
-          fontSize: 9,
+          fontSize: 8,
           columns: [
             [
               {
@@ -300,6 +311,15 @@ export class ReciboDetalharPage implements OnInit {
               descontosValorItemsWithSpaces,
             ],
           ],
+        },
+        {
+          alignment: 'right',
+          fontSize: 8,
+          width: '*',
+          bold: 'true',
+          text: 'Total: ' + this.reciboCollection[0].totalDescontos,
+          margin: [0, 0, 50, 0]
+
         },
         '\n','\n','\n',
         {
@@ -368,6 +388,7 @@ export class ReciboDetalharPage implements OnInit {
             ],
           ],
         },
+
         {
           alignment: 'center',
           columns: [
@@ -387,6 +408,11 @@ export class ReciboDetalharPage implements OnInit {
     pdfMake.createPdf(docDefinition).open();
   }
 
+
+
+  assinarRecibo(){
+    this.navCtrl.navigateForward('funcionario/assinatura');
+  }
   obterDetalhesDoRecibo(matricula: string, mes: string, ano: string) {
     this.loading = true;
     this.reciboService
