@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SolicitacaoService } from 'src/services/solicitacao.service';
 import { UtilService } from 'src/services/util.service';
-import { AlertController, MenuController, NavController  } from '@ionic/angular';
+import { AlertController, MenuController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-solicitacoes',
@@ -13,27 +13,91 @@ export class SolicitacoesPage implements OnInit {
   solicitacaoConcluidaCollection: any[] = [];
   solicitacaoSolicitadaCollection: any[] = [];
   solicitacaoErroCollection: any[] = [];
+  solicitacaoConcluidaCollectionClone: any[] = [];
+  solicitacaoSolicitadaCollectionClone: any[] = [];
+  solicitacaoErroCollectionClone: any[] = [];
   loading: boolean = false;
-
+  palavra = '';
 
   constructor(
     private menuCtrl: MenuController,
     private navCtrl: NavController,
     private utilService: UtilService,
     private solicitacaoService: SolicitacaoService,
-    private alertCtrl: AlertController,
-
+    private alertCtrl: AlertController
   ) {
     this.menuCtrl.enable(true);
   }
 
   ngOnInit() {}
 
+  filtrar(evt) {
+    this.solicitacaoConcluidaCollection =
+      this.solicitacaoConcluidaCollectionClone;
+    this.solicitacaoSolicitadaCollection =
+      this.solicitacaoSolicitadaCollectionClone;
+    this.solicitacaoErroCollection = this.solicitacaoErroCollectionClone;
+    const searchTerm = evt.srcElement.value;
+
+    if (!searchTerm) {
+      return;
+    }
+
+    this.solicitacaoConcluidaCollection =
+      this.solicitacaoConcluidaCollection.filter((c) => {
+        if (searchTerm) {
+          if (
+            c.ano.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+            c.mes.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+          ) {
+            return true;
+          }
+          return false;
+        }
+      });
+
+    this.solicitacaoSolicitadaCollection =
+      this.solicitacaoSolicitadaCollection.filter((c) => {
+        if (searchTerm) {
+          if (
+            c.ano.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+            c.mes.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+          ) {
+            return true;
+          }
+          return false;
+        }
+      });
+
+    this.solicitacaoErroCollection = this.solicitacaoErroCollection.filter(
+      (c) => {
+        if (searchTerm) {
+          if (
+            c.ano.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+            c.mes.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+          ) {
+            return true;
+          }
+          return false;
+        }
+      }
+    );
+  }
+
   getNomeMes(numeroMes: number): string {
     const meses = [
-      'Janeiro', 'Fevereiro', 'Março', 'Abril',
-      'Maio', 'Junho', 'Julho', 'Agosto',
-      'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+      'Janeiro',
+      'Fevereiro',
+      'Março',
+      'Abril',
+      'Maio',
+      'Junho',
+      'Julho',
+      'Agosto',
+      'Setembro',
+      'Outubro',
+      'Novembro',
+      'Dezembro',
     ];
 
     return meses[numeroMes - 1] || '';
@@ -45,10 +109,10 @@ export class SolicitacoesPage implements OnInit {
     this.listarSolicitacaoErro();
   }
 
-
   listarSolicitacaoConcluida(callback = null) {
     this.loading = true;
-    this.solicitacaoService.listar(2)
+    this.solicitacaoService
+      .listar(2)
       .then((response: any) => {
         this.loading = false;
         this.solicitacaoConcluidaCollection = response;
@@ -70,7 +134,8 @@ export class SolicitacoesPage implements OnInit {
 
   listarSolicitacaoSolicitada(callback = null) {
     this.loading = true;
-    this.solicitacaoService.listar(0)
+    this.solicitacaoService
+      .listar(0)
       .then((response: any) => {
         this.loading = false;
         this.solicitacaoSolicitadaCollection = response;
@@ -84,14 +149,16 @@ export class SolicitacoesPage implements OnInit {
         }
 
         this.loading = false;
-      }).finally(() => {
+      })
+      .finally(() => {
         //this.utilService.hideLoading();
       });
   }
 
   listarSolicitacaoErro(callback = null) {
     this.loading = true;
-    this.solicitacaoService.listar(3)
+    this.solicitacaoService
+      .listar(3)
       .then((response: any) => {
         this.loading = false;
         this.solicitacaoErroCollection = response;
@@ -142,9 +209,8 @@ export class SolicitacoesPage implements OnInit {
               .then((response: any) => {
                 this.loading = false;
                 if (response.success == true) {
-                      this.listarSolicitacaoConcluida();
-                      this.listarSolicitacaoSolicitada();
-
+                  this.listarSolicitacaoConcluida();
+                  this.listarSolicitacaoSolicitada();
                 } else {
                   this.utilService.showError(response);
                 }
@@ -159,20 +225,26 @@ export class SolicitacoesPage implements OnInit {
               .finally(() => {
                 this.utilService.hideLoading();
               });
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
 
     await alert.present();
   }
 
-
   atualizar(event) {
-    this.listarSolicitacaoSolicitada();
+    this.palavra = '';
+    this.listarSolicitacaoSolicitada(() => {
+      event.target.complete();
+    });
+
     this.listarSolicitacaoConcluida(() => {
       event.target.complete();
     });
-  }
 
+    this.listarSolicitacaoErro(() => {
+      event.target.complete();
+    });
+  }
 }

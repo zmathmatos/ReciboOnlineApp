@@ -3,8 +3,16 @@
     <ion-buttons slot="start">
       <ion-back-button text="" defaultHref="adm/home"></ion-back-button>
     </ion-buttons>
+
     <p class="titulo">Histórico de Publicações</p>
+
+
   </ion-toolbar>
+  <div class="pesquisa">
+    <ion-searchbar color="light" placeholder="Pesquisar por Mês e Ano" [value]="palavra" [(ngModel)]="palavra"
+      (ionInput)="filtrar($event)"></ion-searchbar>
+  </div>
+
 </ion-header>
 <ion-content>
   <ion-refresher style="background-color: white;" slot="fixed" (ionRefresh)="atualizar($event)">
@@ -13,7 +21,8 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-segment style="background-color: #ef7102; border-radius: 0px;" scrollable (ionChange)="selecionar($event)" mode="ios" [value]="statusSelecionado">
+  <ion-segment style="background-color: #ef7102; border-radius: 0px;" scrollable (ionChange)="selecionar($event)"
+    mode="ios" [value]="statusSelecionado">
     <ion-segment-button value="2">
       <ion-label class="p2">Disponível</ion-label>
     </ion-segment-button>

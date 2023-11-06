@@ -57,25 +57,45 @@ export class FuncAdicionarPage implements OnInit {
   ngOnInit() {}
 
   adicionar() {
-    this.utilService.showLoading();
+    // Obtendo os valores dos campos do formulário
+    const formData = this.formGroup.value;
+    const matricula = formData.matricula;
+    const nome = formData.nome;
+    const email = formData.email;
+    const senha = formData.senha;
+
+    // campos obrigatórios não preenchidos
+    if (!matricula || !nome || !email || !senha) {
+      this.utilService.showAlert(
+        'Campos obrigatórios não preenchidos. Preencha todos os campos.'
+      );
+      return; // Impede a chamada à API se os campos obrigatórios estiverem em branco
+    }
+
     this.loading = true;
-    this.funcionarioService.adicionar(this.formGroup.value)
+
+    this.funcionarioService
+      .adicionar(formData)
       .then((response: any) => {
-        this.utilService.hideLoading();
+        console.log('Resposta da API:', response);
         this.loading = false;
-        if (response.success == true) {
-          this.utilService.showAlert('Operação realizada com sucesso!', () => {
-            this.navCtrl.navigateRoot('adm/func-consultar');
-          });
-        }
-        else {
-          this.utilService.hideLoading();
+
+        if (response.success === true) {
+          this.utilService.showAlert(
+            'Funcionário cadastrado com sucesso!',
+            () => {
+              this.navCtrl.navigateRoot('adm/func-consultar');
+            }
+          );
+        } else {
           this.utilService.showError(response);
         }
       })
       .catch((error) => {
+        console.log('Erro na chamada à API:', error);
         this.loading = false;
-        this.utilService.showAlert('Desculpe, operação falhou! Tente novamente mais tarde.'
+        this.utilService.showAlert(
+          'Desculpe, a operação falhou. Tente novamente mais tarde.'
         );
       });
   }

@@ -17,16 +17,16 @@
           <ion-col>
             <ion-item>
               <ion-label position="floating">Mês</ion-label>
-              <ion-input [(ngModel)]="mes" autofocus="true" formControlName="mes" placeholder="Insira o Mês" type="number" (ngModelChange)="formatarNumero($event, 'mes')">
+              <ion-input [(ngModel)]="mes" autofocus="true" formControlName="mes" placeholder="Insira o Mês"
+                type="number" (ngModelChange)="formatarNumero($event, 'mes')">
               </ion-input>
             </ion-item>
           </ion-col>
-        </ion-row>
-        <ion-row>
           <ion-col>
             <ion-item>
               <ion-label position="floating">Ano</ion-label>
-              <ion-input [(ngModel)]="ano" autofocus="true" formControlName="ano" placeholder="Insira o Ano" type="number" (ngModelChange)="formatarNumero($event, 'ano')">
+              <ion-input [(ngModel)]="ano" autofocus="true" formControlName="ano" placeholder="Insira o Ano"
+                type="number" (ngModelChange)="formatarNumero($event, 'ano')">
               </ion-input>
             </ion-item>
           </ion-col>
@@ -36,13 +36,14 @@
             <div style="display: flex;">
               <ion-item>
                 <ion-label position="floating">Matrícula</ion-label>
-                <ion-input autofocus="true" formControlName="matricula" placeholder="Insira a matrícula" type="number">
+                <ion-input [(ngModel)]="matricula" autofocus="true" formControlName="matricula"
+                  placeholder="Insira a matrícula" type="number" (ngModelChange)="formatarNumero($event, 'matricula')">
                 </ion-input>
               </ion-item>
               <ion-item style="top: 24px;">
                 <ion-checkbox justify="end" formControlName="todasMatriculas" [(ngModel)]="isChecked">
                   <ion-label>Todas</ion-label>
-                 </ion-checkbox>
+                </ion-checkbox>
               </ion-item>
             </div>
           </ion-col>
@@ -53,11 +54,11 @@
           <ion-col>
             <ion-item>
               <ion-label position="floating">Tipo de Folha</ion-label>
-              <ion-select  interface="action-sheet" formControlName="tipoFolha">
-                    <ion-select-option value="0">Normal</ion-select-option>
-                    <ion-select-option value="1">Férias</ion-select-option>
-                    <ion-select-option value="2">13º Salário</ion-select-option>
-                    <ion-select-option value="3">Rescisão</ion-select-option>
+              <ion-select interface="action-sheet" formControlName="tipoFolha">
+                <ion-select-option value="0">Normal</ion-select-option>
+                <ion-select-option value="1">Férias</ion-select-option>
+                <ion-select-option value="2">13º Salário</ion-select-option>
+                <ion-select-option value="3">Rescisão</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>

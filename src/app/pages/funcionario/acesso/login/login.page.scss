@@ -49,17 +49,14 @@
   display: flex;
   justify-content: center;
   cursor: pointer;
-
 }
 
 .subtitulo2:hover {
   color: #ff7b00;
 }
 
-
-
 .container-login {
-  width: 90%;
+  top: 30%;
   padding: 13px;
   background: #ffffff;
   border-radius: 5px;
@@ -67,15 +64,14 @@
   -moz-box-shadow: 1px 2px 8px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 1px 2px 8px 0px rgba(0, 0, 0, 0.75);
 }
-.input{
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
--webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
-margin: 0;
-}
-
+.input {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
 }
 .fundo {
   width: 100%;

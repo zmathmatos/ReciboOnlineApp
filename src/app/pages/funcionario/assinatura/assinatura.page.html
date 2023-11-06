@@ -8,17 +8,19 @@
 </ion-header>
 
 <ion-content>
+
   <div class="canvas-container">
-    <canvas #canvas></canvas>
+    <canvas #canvas>
+      <hr style="border: 1px solid #000; margin: 20px 0;">
+    </canvas>
   </div>
   <ion-grid>
     <ion-row>
-      <ion-col >
+      <ion-col style="display: flex; justify-content: center; align-items: center;">
         <ion-button color="danger" (click)="clearPad()">Limpar</ion-button>
-        <ion-button color="primary" (click)="savePad()">Salvar</ion-button>
+        <ion-button color="success" (click)="savePad()">Salvar</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <img [src]= 'signatureImg'/>
 
 </ion-content>

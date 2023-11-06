@@ -54,10 +54,9 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
       this.statusBar.backgroundColorByHexString('#000000'); // Substitua com a cor desejada
-
     });
-    if(localStorage.getItem('darkMode') === null){
-      localStorage.setItem('darkMode', "false");
+    if (localStorage.getItem('darkMode') === null) {
+      localStorage.setItem('darkMode', 'false');
     }
   }
 
@@ -80,50 +79,6 @@ export class AppComponent implements OnInit {
     }else{
       this.toggle_theme = false;
     }*/
-
-    console.log(
-      `Runing app ${this.isPWAInstalled ? 'standalone' : 'in browser'}`
-    );
-
-    this.swUpdate.available.subscribe(async (event) => {
-      console.log('current version is', event.current);
-      console.log('available version is', event.available);
-
-      if (event.current !== event.available) {
-        const alert = await this.alertCtrl.create({
-          header: 'Oba, Temos Novidades!',
-          subHeader: 'Há uma nova versão disponível da aplicação.',
-          message: 'Deseja atualizar agora?',
-          buttons: [
-            {
-              text: 'Instalar',
-              handler: () => {
-                this.swUpdate.activateUpdate();
-              },
-            },
-            'Mais tarde',
-          ],
-        });
-        alert.present();
-      }
-    });
-
-    this.swUpdate.activated.subscribe((event) => {
-      console.log('old version was', event.previous);
-      console.log('new version is', event.current);
-    });
-
-    await this.platform.ready();
-
-    if (!this.isMobile) {
-      this.checkForUpdate();
-      if (!this.isPWAInstalled) {
-        this.listenForInstallEvent();
-      }
-    }
-
-    console.log('swUpdate.isEnabled: ' + this.swUpdate.isEnabled);
-    //this.swUpdate.checkForUpdate();
 
     this.utilService.getObservable().subscribe((data) => {
       if (data.key == 'usuarioLogado') {
@@ -219,7 +174,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-/*
+  /*
 changeTheme(event){
   if(event.detail.checked){
    document.body.setAttribute('color-theme', 'dark');

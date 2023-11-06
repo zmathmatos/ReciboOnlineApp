@@ -13,8 +13,8 @@ import { AssinaturaPage } from './assinatura.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AssinaturaPageRoutingModule
+    AssinaturaPageRoutingModule,
   ],
-  declarations: [AssinaturaPage]
+  declarations: [AssinaturaPage],
 })
 export class AssinaturaPageModule {}
