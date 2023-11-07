@@ -1,57 +1,49 @@
-<ion-content>
-  <div class="fundo">
-    <header>
-      <div style="background-color: #000000;">
-        <img src="../assets/logo2.png" class="img-header" />
-      </div>
-    </header>
-
-
-    <div style="margin-left: 30px; margin-right: 30px; padding-top: 90px">
-      <ion-card class="container-login" class="card-shadow" style="padding: 10px;">
-        <div>
-          <form [formGroup]="formGroup" >
-            <ion-text>
-              <p class="titulo">Novo Acesso</p>
-            </ion-text>
-            <ion-list >
-              <ion-item>
-                <ion-label position="stacked">Matrícula:</ion-label>
-                <ion-input autofocus="true" formControlName="matricula" placeholder="Insira a matrícula" type="text">
-                </ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Nome:</ion-label>
-                <ion-input autofocus="true" formControlName="nome" placeholder="Insira o nome" type="text">
-                </ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">E-mail:</ion-label>
-                <ion-input formControlName="email" placeholder="Insira o e-mail" type="email">
-                </ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Senha:</ion-label>
-                <ion-input formControlName="senha" placeholder="Insira a senha" type="password">
-                </ion-input>
-              </ion-item>
-            </ion-list>
-
-
-            <div style="padding-top: 20px;">
-              <ion-button expand="block" (click)="adicionar()">Cadastrar</ion-button>
-            </div>
-
-
-              <ion-card-subtitle class="subtitulo2" (click)="voltar()">
-               Voltar
-              </ion-card-subtitle>
-
-
-
-          </form>
-        </div>
-      </ion-card>
-    </div>
+<ion-header>
+  <div style="background-color: #000000;">
+    <img src="../assets/logo2.png" class="img-header" />
   </div>
+</ion-header>
+
+<ion-content color="primary">
+  <ion-card class="container-login" class="card-shadow" style="padding: 10px;">
+    <div>
+      <form [formGroup]="formGroup">
+        <ion-text>
+          <p class="titulo">Novo Acesso</p>
+        </ion-text>
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Matrícula:</ion-label>
+            <ion-input autofocus="true" formControlName="matricula" placeholder="Insira a matrícula" type="text">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Nome:</ion-label>
+            <ion-input autofocus="true" formControlName="nome" placeholder="Insira o nome" type="text">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">E-mail:</ion-label>
+            <ion-input formControlName="email" placeholder="Insira o e-mail" type="email">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Senha:</ion-label>
+            <ion-input formControlName="senha" placeholder="Insira a senha" type="password">
+            </ion-input>
+          </ion-item>
+        </ion-list>
+
+
+        <div style="padding-top: 20px;">
+          <ion-button expand="block" (click)="adicionar()">Cadastrar</ion-button>
+        </div>
+
+
+        <ion-card-subtitle class="subtitulo2" (click)="voltar()">
+          Voltar
+        </ion-card-subtitle>
+      </form>
+    </div>
+  </ion-card>
 </ion-content>
