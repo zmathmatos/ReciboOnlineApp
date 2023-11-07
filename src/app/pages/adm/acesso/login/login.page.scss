@@ -15,15 +15,14 @@
 
 .titulo {
   text-align: center;
-  padding-top: 20px;
-  font-size: 32px;
+  font-size: 30px;
   font-weight: bold;
   color: rgb(41, 41, 41);
   font-family: "Poppins", sans-serif;
 }
 
 .subtitulo1 {
-  font-size: 17px;
+  font-size: 15px;
   display: flex;
   justify-content: center;
   padding-bottom: 12px;
@@ -43,6 +42,7 @@
   color: #ff7b00;
 }
 .subtitulo2 {
+  margin-top: 25px;
   font-size: 15px;
   color: #464545;
   display: flex;
@@ -55,10 +55,12 @@
 }
 
 .container-login {
-  width: 90%;
-  padding: 13px;
+  margin: 6%;
+  top: 10%;
+  height: 31em;
+  padding: 20px;
   background: #ffffff;
-  border-radius: 5px;
+  border-radius: 20px;
   -webkit-box-shadow: 1px 2px 8px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 1px 2px 8px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 1px 2px 8px 0px rgba(0, 0, 0, 0.75);
@@ -71,20 +73,6 @@
     appearance: none;
     margin: 0;
   }
-}
-.fundo {
-  width: 100vw;
-  height: 100vh;
-  padding: 0px;
-  background-image: linear-gradient(
-    to top,
-    rgb(255, 68, 0),
-    rgb(252, 112, 19),
-    rgb(255, 166, 0)
-  );
-  position: absolute;
-  background-size: 404%;
-  position: fixed;
 }
 
 .row2 {

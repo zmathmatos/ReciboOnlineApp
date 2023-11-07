@@ -21,9 +21,9 @@ export class UtilService {
   ) {}
 
   obterUrlDaApi() {
-    //return 'https://reciboonline.api.qsti.com.br/api/';
+    return 'https://reciboonline.api.qsti.com.br/api/';
     //return 'http://localhost:8081/api/';
-    return "http://localhost:5000/api/";
+    //return "http://localhost:5000/api/";
   }
 
   private eventSubject = new Subject<any>();
@@ -124,7 +124,6 @@ export class UtilService {
 
     await alert.present();
   }
-
 
   async showAlertUsuarioLogado(message: string, callback: any = null) {
     const alert = await this.alertCtrl.create({

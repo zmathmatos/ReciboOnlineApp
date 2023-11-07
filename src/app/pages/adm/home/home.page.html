@@ -11,64 +11,58 @@
 </ion-header>
 
 <ion-content>
-
   <ion-item>
     <p class="titulo">Home</p>
   </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="dark" mode="md" expand="block" class="botao" (click)="publicarRecibo()">
+          <span class="ion-text-left">Publicar Recibos</span>
+          <ion-icon name="paper-plane" slot="start" color="primary"></ion-icon>
+          <ion-icon name="chevron-forward" slot="end" color="light"></ion-icon>
 
+        </ion-button>
 
-  <ion-content>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-button color="dark" mode="md" expand="block" class="botao" (click)="publicarRecibo()">
-            <span class="ion-text-left">Publicar Recibos</span>
-            <ion-icon name="paper-plane" slot="start" color="primary"></ion-icon>
-            <ion-icon name="chevron-forward" slot="end" color="light"></ion-icon>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="dark" mode="md" expand="block" class="botao" (click)="funcionariosClick()">
+          <span class="ion-text-left">Funcionários</span>
+          <ion-icon name="person" slot="start" color="primary" style="margin-right: 5px;"></ion-icon>
+          <ion-icon name="chevron-forward" slot="end" color="light"></ion-icon>
+        </ion-button>
 
-          </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="dark" mode="md" expand="block" class="botao" (click)="administradoresClick()">
+          <span class="ion-text-left">Administradores</span>
+          <ion-icon name="people" slot="start" color="primary" style="margin-right: 5px;"></ion-icon>
+          <ion-icon name="chevron-forward" slot="end" color="light"></ion-icon>
+        </ion-button>
 
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-button color="dark" mode="md" expand="block" class="botao" (click)="funcionariosClick()">
-            <span class="ion-text-left">Funcionários</span>
-            <ion-icon name="person" slot="start" color="primary" style="margin-right: 5px;"></ion-icon>
-            <ion-icon name="chevron-forward" slot="end" color="light"></ion-icon>
-          </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-button color="dark" mode="md" expand="block" class="botao" (click)="administradoresClick()">
-            <span class="ion-text-left">Administradores</span>
-            <ion-icon name="people" slot="start" color="primary" style="margin-right: 5px;"></ion-icon>
-            <ion-icon name="chevron-forward" slot="end" color="light"></ion-icon>
-          </ion-button>
-
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-button color="dark" mode="md" expand="block" class="botao" (click)="relatoriosClick()">
-            <span class="ion-text-left">Relatórios</span>
-            <ion-icon name="reader" slot="start" color="primary"></ion-icon>
-            <ion-icon name="chevron-forward" slot="end" color="light"></ion-icon>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-  </ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="dark" mode="md" expand="block" class="botao" (click)="relatoriosClick()">
+          <span class="ion-text-left">Relatórios</span>
+          <ion-icon name="reader" slot="start" color="primary"></ion-icon>
+          <ion-icon name="chevron-forward" slot="end" color="light"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -72,6 +72,13 @@ export class FuncAdicionarPage implements OnInit {
       return; // Impede a chamada à API se os campos obrigatórios estiverem em branco
     }
 
+    if (matricula <= 0) {
+      this.utilService.showAlert(
+        "O campo 'Matrícula' não pode ser menor ou igual a 0 (zero)."
+      );
+      return;
+    }
+
     this.loading = true;
 
     this.funcionarioService

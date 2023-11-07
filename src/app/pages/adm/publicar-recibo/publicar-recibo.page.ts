@@ -92,24 +92,46 @@ export class PublicarReciboPage implements OnInit {
     const mes = formData.mes;
     const ano = formData.ano;
     const matricula = formData.matricula;
+    const tipoFolha = formData.tipoFolha;
 
     // Verificar se o mês e o ano são inválidos
-    if (mes <= 0 || mes > 12 || ano <= 0) {
-      this.utilService.hideLoading();
-      this.loading = false;
-      this.utilService.showAlert(
-        'Mês e/ou Ano inválidos. Verifique os campos.'
-      );
+    if (mes <= 0 || mes > 12) {
+      this.utilService.showAlert('Mês inválido, verifique o campo.');
 
       return; // Impede que a chamada à API seja feita se os campos forem inválidos
     }
 
-    if (
-      (matricula == 0 && this.isChecked == false) ||
-      (matricula == null && this.isChecked == false)
-    ) {
+    if (ano <= 0 || ano.toString().length < 4) {
+      this.utilService.hideLoading();
+      this.loading = false;
+      this.utilService.showAlert('Ano inválido, verifique o campo.');
+
+      return;
+    }
+
+    if (matricula == null && this.isChecked == false) {
       this.utilService.showAlert(
-        "O campo 'Matrícula' precisa ser preenchido se a publicação não for para todos os funcionários."
+        "O campo 'Matrícula' precisa ser preenchido se a publicação não for para todas as matrículas."
+      );
+      return;
+    }
+
+    if (matricula <= 0 && this.isChecked == false) {
+      this.utilService.showAlert(
+        "O campo 'Matrícula' não pode ser menor ou igual a 0 (zero)."
+      );
+      return;
+    }
+
+    if (tipoFolha === null) {
+      this.utilService.showAlert('Selecione o tipo de Folha!');
+
+      return;
+    }
+
+    if (!mes || !ano || !matricula || !this.isChecked || !tipoFolha) {
+      this.utilService.showAlert(
+        'Campos obrigatórios não preenchidos. Preencha todos os campos.'
       );
       return;
     }

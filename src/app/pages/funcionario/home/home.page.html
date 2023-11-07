@@ -38,8 +38,7 @@
 
   <ion-list class="animate__animated animate__fadeInUp" *ngIf="loading == false">
     <ion-item-sliding *ngFor="let recibo of reciboCollection">
-
-      <ion-item style="cursor: pointer;" (click)="showAndSaveDetails(recibo)">
+      <ion-item style="cursor: pointer;">
         <ion-label>
           <p class="mes">{{ getNomeMes(recibo.mes) }}</p>
         </ion-label>
